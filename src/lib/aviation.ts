@@ -9,13 +9,22 @@ function normalizeAngleDiff(deg: number): number {
   return d
 }
 
+export type AltimeterUnit = 'hpa' | 'inHg'
+
 export interface PressureAltitudeInput {
   fieldElevationFt: number
-  qnhHpa: number
+  altimeterSetting: number
+  unit: AltimeterUnit
 }
 
-export function pressureAltitudeFt({ fieldElevationFt, qnhHpa }: PressureAltitudeInput): number {
-  return fieldElevationFt + (1013.25 - qnhHpa) * 30
+export function pressureAltitudeFt({
+  fieldElevationFt,
+  altimeterSetting,
+  unit,
+}: PressureAltitudeInput): number {
+  return unit === 'hpa'
+    ? fieldElevationFt + (1013.25 - altimeterSetting) * 30
+    : fieldElevationFt + (29.92 - altimeterSetting) * 1000
 }
 
 export interface DensityAltitudeInput {

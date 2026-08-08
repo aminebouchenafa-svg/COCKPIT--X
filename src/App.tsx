@@ -12,6 +12,9 @@ import FogTypes from './pages/knowledge/FogTypes'
 import VxVy from './pages/knowledge/VxVy'
 import AtcLightSignals from './pages/knowledge/AtcLightSignals'
 import Stalls from './pages/knowledge/Stalls'
+import Hypoxia from './pages/knowledge/Hypoxia'
+import MaydayPanPan from './pages/knowledge/MaydayPanPan'
+import TransitionAltitudeLevel from './pages/knowledge/TransitionAltitudeLevel'
 
 function App() {
   return (
@@ -30,6 +33,12 @@ function App() {
           <Route path="/connaissances/vx-vy" element={<VxVy />} />
           <Route path="/connaissances/signaux-lumineux-atc" element={<AtcLightSignals />} />
           <Route path="/connaissances/decrochages" element={<Stalls />} />
+          <Route path="/connaissances/hypoxie" element={<Hypoxia />} />
+          <Route path="/connaissances/mayday-pan-pan" element={<MaydayPanPan />} />
+          <Route
+            path="/connaissances/altitude-niveau-transition"
+            element={<TransitionAltitudeLevel />}
+          />
         </Routes>
       </div>
       <BottomNav />

@@ -30,6 +30,24 @@ export const knowledgeCards: KnowledgeCard[] = [
     subtitle: 'Angle d\'attaque critique, types et récupération',
     category: 'Aérodynamique',
   },
+  {
+    slug: 'hypoxie',
+    title: 'Hypoxie',
+    subtitle: 'Reconnaître, comprendre, prévenir',
+    category: 'Physiologie',
+  },
+  {
+    slug: 'mayday-pan-pan',
+    title: 'Mayday vs Pan Pan',
+    subtitle: 'Appels de détresse et d\'urgence',
+    category: 'Réglementation',
+  },
+  {
+    slug: 'altitude-niveau-transition',
+    title: 'Altitude / niveau de transition',
+    subtitle: 'Passage du calage local au calage standard',
+    category: 'Réglementation',
+  },
 ]
 
 export interface FogType {
@@ -184,4 +202,115 @@ export const stallInfo = {
     { bank: '45°', factor: '1.41 Vs' },
     { bank: '60°', factor: '2.00 Vs' },
   ],
+}
+
+export const hypoxiaInfo = {
+  definition:
+    'L\'hypoxie est un état causé par un manque d\'oxygène atteignant les tissus du corps. En altitude, l\'air contient moins d\'oxygène, ce qui peut altérer la réflexion, le jugement et la coordination sans que le pilote s\'en rende compte.',
+  types: [
+    { name: 'Hypoxie hypoxique', desc: 'Causée par un manque d\'oxygène ambiant (altitude). Type le plus courant en aviation.' },
+    { name: 'Hypoxie hypoxémique', desc: 'Causée par un apport insuffisant d\'oxygène dans le sang, dû à un problème pulmonaire ou respiratoire.' },
+    { name: 'Hypoxie anémique', desc: 'Causée par une capacité réduite du sang à transporter l\'oxygène (ex. anémie).' },
+    { name: 'Hypoxie histotoxique', desc: 'Causée par l\'incapacité des cellules à utiliser l\'oxygène (ex. intoxication, comme au CO).' },
+  ],
+  causes: [
+    'Altitude élevée (au-dessus de 10 000 ft sans oxygène)',
+    'Décompression rapide',
+    'Pressurisation inadéquate',
+    'Panne du système d\'oxygène',
+    'Effort prolongé en altitude',
+    'Flux d\'air obstrué / difficultés respiratoires',
+  ],
+  symptoms: [
+    'Légère euphorie',
+    'Jugement altéré',
+    'Mauvaise coordination',
+    'Vision tunnel',
+    'Maux de tête',
+    'Somnolence / fatigue',
+    'Confusion',
+    'Perte de connaissance (à terme)',
+  ],
+  tuc: [
+    { altitude: '10 000 ft (3 000 m)', tuc: '30 – 60 min' },
+    { altitude: '15 000 ft (4 500 m)', tuc: '5 – 10 min' },
+    { altitude: '20 000 ft (6 000 m)', tuc: '2 – 3 min' },
+    { altitude: '25 000 ft (7 500 m)', tuc: '30 – 60 sec' },
+    { altitude: '30 000 ft (9 000 m)', tuc: '15 – 20 sec' },
+    { altitude: '35 000 ft (10 500 m)', tuc: '9 – 15 sec' },
+    { altitude: '40 000 ft (12 000 m)', tuc: '5 – 10 sec' },
+  ],
+  tucNote:
+    'Le temps de conscience utile (TUC) varie selon la condition physique, l\'effort, la ventilation et l\'âge. Utilise l\'oxygène — ne te fie pas au temps.',
+  prevention: [
+    'Utiliser l\'oxygène au-dessus de 10 000 ft (selon réglementation et exigences avion/équipage)',
+    'Vérification prévol : système d\'oxygène en état et quantité suffisante',
+    'Connaître les limites de pressurisation de l\'avion',
+    'Reconnaître les premiers symptômes chez soi et chez les autres',
+    'Utiliser l\'oxygène supplémentaire immédiatement en cas de symptômes',
+    'Rester hydraté, bien reposé et éviter l\'alcool avant de voler',
+  ],
+  worseningFactors: [
+    { name: 'Tabac', desc: 'Réduit l\'absorption d\'oxygène et endommage les poumons.' },
+    { name: 'Effort physique', desc: 'Augmente la demande en oxygène du corps.' },
+    { name: 'Alcool', desc: 'Déprime la respiration et altère le jugement.' },
+    { name: 'Sédatifs / certains médicaments', desc: 'Peuvent causer somnolence et ralentir la respiration.' },
+    { name: 'Fatigue / manque de sommeil', desc: 'Réduit la vigilance mentale et augmente le risque.' },
+    { name: 'Déshydratation', desc: 'Épaissit le sang et réduit l\'apport d\'oxygène.' },
+  ],
+}
+
+export const maydayPanPan = {
+  mayday: {
+    title: 'MAYDAY — Appel de détresse',
+    definition:
+      'Utilisé quand une situation implique un danger grave et imminent pour l\'avion ou les personnes à bord, nécessitant une assistance immédiate.',
+    examples: [
+      'Panne moteur avec danger imminent',
+      'Feu ou fumée à bord',
+      'Décompression rapide',
+      'Dommages sérieux ou perte de contrôle',
+      'Atterrissage forcé ou amerrissage',
+    ],
+    call: 'MAYDAY MAYDAY MAYDAY',
+    meaning: 'Assistance immédiate requise.',
+  },
+  panPan: {
+    title: 'PAN PAN — Appel d\'urgence',
+    definition:
+      'Utilisé quand une situation nécessite une attention ou une assistance urgente, mais sans danger grave et imminent pour l\'avion ou les personnes à bord.',
+    examples: [
+      'Problème médical nécessitant une assistance urgente',
+      'Panne technique sans danger immédiat',
+      'Problème de carburant nécessitant un traitement prioritaire',
+      'Problème de communication ou de navigation',
+      'Autre situation nécessitant une attention urgente',
+    ],
+    call: 'PAN PAN PAN PAN PAN PAN',
+    meaning: 'Assistance ou attention urgente requise.',
+  },
+  radioPrinciples: ['Parler clairement', 'Indiquer la nature du problème', 'Donner sa position'],
+}
+
+export const transitionAltitudeLevel = {
+  belowTa: {
+    title: 'En dessous de l\'altitude de transition (TA)',
+    detail: 'Calage local (QNH/QFE) utilisé sur l\'altimètre.',
+  },
+  layer: {
+    title: 'Couche de transition',
+    detail:
+      'Couche entre TA et TL où l\'avion passe du calage local au calage standard.',
+  },
+  aboveTl: {
+    title: 'Au-dessus du niveau de transition (TL)',
+    detail: 'Calage standard 1013,25 hPa (29,92 inHg) utilisé sur l\'altimètre.',
+  },
+  keyPoints: [
+    'En dessous de la TA : utiliser le calage local (QNH/QFE).',
+    'Entre TA et TL : transition du calage local au calage standard.',
+    'Au-dessus de la TL : utiliser le calage standard (1013,25 hPa / 29,92 inHg).',
+    'Toujours suivre les instructions ATC et vérifier la TA et la TL applicables dans l\'AIP de la région — elles varient selon les pays et les aérodromes.',
+  ],
+  example: { ta: '5 000 ft', tl: 'FL 180' },
 }

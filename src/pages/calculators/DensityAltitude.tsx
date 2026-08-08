@@ -2,28 +2,51 @@ import { useMemo, useState } from 'react'
 import PageHeader from '../../components/PageHeader'
 import NumberField from '../../components/NumberField'
 import ResultTile from '../../components/ResultTile'
-import { densityAltitudeFt, isaTempAtAltitudeC, pressureAltitudeFt } from '../../lib/aviation'
+import UnitToggle from '../../components/UnitToggle'
+import { densityAltitudeFt, isaTempAtAltitudeC, pressureAltitudeFt, type AltimeterUnit } from '../../lib/aviation'
 
 export default function DensityAltitude() {
   const [elevation, setElevation] = useState(0)
+  const [unit, setUnit] = useState<AltimeterUnit>('hpa')
   const [qnh, setQnh] = useState(1013)
+  const [altimeterInHg, setAltimeterInHg] = useState(29.92)
   const [oat, setOat] = useState(15)
 
+  const altimeterSetting = unit === 'hpa' ? qnh : altimeterInHg
+
   const result = useMemo(() => {
-    if ([elevation, qnh, oat].some((v) => Number.isNaN(v))) return null
-    const pa = pressureAltitudeFt({ fieldElevationFt: elevation, qnhHpa: qnh })
+    if ([elevation, altimeterSetting, oat].some((v) => Number.isNaN(v))) return null
+    const pa = pressureAltitudeFt({ fieldElevationFt: elevation, altimeterSetting, unit })
     const isaTemp = isaTempAtAltitudeC(pa)
     const da = densityAltitudeFt({ pressureAltitudeFt: pa, oatC: oat })
     return { pa, isaTemp, da }
-  }, [elevation, qnh, oat])
+  }, [elevation, altimeterSetting, unit, oat])
 
   return (
     <div className="page">
       <PageHeader title="Altitude densité" subtitle="Altitude pression corrigée par l'écart à l'ISA" />
 
       <div className="card">
+        <UnitToggle
+          options={[
+            { value: 'hpa', label: 'QNH (hPa)' },
+            { value: 'inHg', label: 'Altimeter setting (inHg)' },
+          ]}
+          value={unit}
+          onChange={setUnit}
+        />
         <NumberField label="Élévation terrain" unit="ft" value={elevation} onChange={setElevation} />
-        <NumberField label="QNH" unit="hPa" value={qnh} onChange={setQnh} step={0.1} />
+        {unit === 'hpa' ? (
+          <NumberField label="QNH" unit="hPa" value={qnh} onChange={setQnh} step={0.1} />
+        ) : (
+          <NumberField
+            label="Altimeter setting"
+            unit="inHg"
+            value={altimeterInHg}
+            onChange={setAltimeterInHg}
+            step={0.01}
+          />
+        )}
         <NumberField label="Température extérieure (OAT)" unit="°C" value={oat} onChange={setOat} />
       </div>
 
