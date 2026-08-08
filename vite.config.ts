@@ -2,8 +2,11 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
+const base = '/COCKPIT--X/'
+
 // https://vite.dev/config/
 export default defineConfig({
+  base,
   plugins: [
     react(),
     VitePWA({
@@ -18,19 +21,19 @@ export default defineConfig({
         background_color: '#0b1220',
         display: 'standalone',
         orientation: 'portrait',
-        start_url: '/',
-        scope: '/',
+        start_url: base,
+        scope: base,
         icons: [
-          { src: '/icons/icon-64.png', sizes: '64x64', type: 'image/png' },
-          { src: '/icons/icon-96.png', sizes: '96x96', type: 'image/png' },
-          { src: '/icons/icon-128.png', sizes: '128x128', type: 'image/png' },
-          { src: '/icons/icon-144.png', sizes: '144x144', type: 'image/png' },
-          { src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
-          { src: '/icons/icon-256.png', sizes: '256x256', type: 'image/png' },
-          { src: '/icons/icon-384.png', sizes: '384x384', type: 'image/png' },
-          { src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
+          { src: 'icons/icon-64.png', sizes: '64x64', type: 'image/png' },
+          { src: 'icons/icon-96.png', sizes: '96x96', type: 'image/png' },
+          { src: 'icons/icon-128.png', sizes: '128x128', type: 'image/png' },
+          { src: 'icons/icon-144.png', sizes: '144x144', type: 'image/png' },
+          { src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'icons/icon-256.png', sizes: '256x256', type: 'image/png' },
+          { src: 'icons/icon-384.png', sizes: '384x384', type: 'image/png' },
+          { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' },
           {
-            src: '/icons/maskable-512.png',
+            src: 'icons/maskable-512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable',
